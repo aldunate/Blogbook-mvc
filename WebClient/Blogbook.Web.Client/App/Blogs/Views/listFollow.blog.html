@@ -1,0 +1,39 @@
+﻿
+
+<div data-ng-controller="BlogsController" data-ng-init="findFollow()" xmlns="http://www.w3.org/1999/html">
+    <div class="page-header"></div>
+    <div data-ng-repeat="blog in blogs">
+        <div class="container well">
+            <div class="col-md-12">
+                <span class="col-md-4">
+                    <img class="img-responsive" ng-src="{{blog.ImageBlog}}" style="max-width:100%;" />
+                </span>
+                <div class="col-md-8">
+                    <div>
+                        <h2 class="list-group-item-heading" data-ng-bind="blog.Name"></h2>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p>{{blog.Description | limitTo: 700}}</p>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h5 class="col-md-2" data-ng-bind="blog.KFollowers"></h5>
+                    <h5 class="glyphicon glyphicon-eye-open col-md-2" data-ng-bind="blog.KViews"></h5>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="{{blog.OriginalUrl}}"><h5 data-ng-bind="IR"></h5></a>
+                </div>
+                <div class="col-md-2">
+                    <a ng-click="goPost()" data-ng-href="{{blog.OriginalUrl}}" class="btn-link" target="_blank">
+                        <h5>Go to the post</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-inverse" ng-controller="HomeController">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/">Blogbook</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blogs <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#/blogs">Los mas visitados</a></li>
+                            <li><a href="#/blogs">Seguidos por mi</a></li>                          
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articulos <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#/">Los mas visitados</a></li>
+                            <li><a href="#/">Seguidos por mi</a></li>
+                        </ul>
+                    </li>
+                </ul>             
+               
+                <ul class="nav navbar-nav navbar-right" data-ng-show="authentication">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <span>Mi Blog</span> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Entrar</a>
+                            </li>
+                            <li>
+                                <a href="#/articles/create">Nuevo Articulo</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <span>Usuario</span> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Editar Perfil</a>
+                            </li>
+                            <li>
+                                <a href="#">Redes Sociales</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Salir</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>  
+                <!-- Login and Register -->
+                <div class="nav navbar-nav navbar-right" data-ng-hide="authentication" ng-controller="AuthenticationController">
+                    <button type="button" class="btn btn-default" ng-click="openModalSignin()">Entrar</button>
+                    <button type="button" class="btn btn-default" ng-click="openModalSignup()">Registrarse</button>
+                </div> 
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <hr />
+    <footer>
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </div>
+    </footer>
+    <!--  MODALS AREAA-->
+    <!-- LOGIN MODAL -->
+    <div w3-include ></div>
+
+    <div ng-controller="AuthenticationController">
+        <script type="text/ng-template" id="user.signin.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Entrar</h3>
+            </div>
+            <div class="modal-body">
+                <section class="row" data-ng-controller="AuthenticationController">
+                    <div class="col-xs-offset-1 col-xs-9 col-md-offset-1 col-md-9">
+                        <form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="username">Usuario</label>
+                                    <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+                                </div>
+                                <div class="text-center form-group">
+                                    <button type="submit" class="btn btn-primary">Entrar</button>&nbsp; or&nbsp;
+                                    <a href="/#!/signup">Registrarse</a>
+                                </div>
+                                <div class="forgot-password">
+                                    <a href="/#!/password/forgot">¿Olvidaste tu contraseña?</a>
+                                </div>
+                                <div data-ng-show="error" class="text-center text-danger">
+                                    <strong data-ng-bind="error"></strong>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cerrar</button>
+            </div>
+        </script>
+    </div>
+    <!-- REGISTER MODAL -->
+    <div ng-controller="AuthenticationController">
+        <script type="text/ng-template" id="user.signup.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Registrate</h3>
+            </div>
+            <div class="modal-body">
+                <section class="row" data-ng-controller="AuthenticationController">
+                    <div class="col-md-offset-1"> <h3>Utiliza tu red social</h3></div>
+                    <div class="col-md-12 text-center">
+                        <a href="/auth/facebook" class="undecorated-link">
+                            <img src="~/App/Img/facebook.png">
+                        </a>
+                        <a href="/auth/twitter" class="undecorated-link">
+                            <img src="~/App/Img/twitter.png">
+                        </a>
+                        <a href="/auth/google" class="undecorated-link">
+                            <img src="~/App/Img/google.png">
+                        </a>
+                    </div>
+                    <div class="col-xs-offset-1 col-xs-9 col-md-offset-1 col-md-9">
+                        <form data-ng-submit="signup()" class="signin form-horizontal" autocomplete="off">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="username">Usuario</label>
+                                    <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+                                </div>
+                                <div class="text-center form-group">
+                                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                                </div>
+                                <div data-ng-show="error" class="text-center text-danger">
+                                    <strong data-ng-bind="error"></strong>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cerrar</button>
+            </div>
+        </script>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angularApp")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<section data-ng-controller="BlogsController" data-ng-init="findOne()">
+    <div>
+        <div class="page-header col-md-12">
+            <span class="col-md-4">
+                <img style="width:100px; height: 100px;" class="img-responsive" ng-src="http://fotouser.miarroba.st/68731257/300/mr-anonimo.jpg">
+            </span>
+            <h1 data-ng-bind="blog.name" class="col-md-8"></h1>
+        </div>
+
+        <div class="col-md-12">
+            <div data-ng-repeat="article in articlesBlog">
+                <div class="container well">
+                    <div class="col-md-12">
+                        <span class="col-md-4" data-ng-repeat="image in article.imageUrls  track by $index">
+                            <img class="img-responsive" ng-src="{{article.imageUrls[0]}}" style="max-width:100%;" />
+                        </span>
+                        <div class="item col-md-8">
+                            <div class="col-md-12">
+                                <h2 class="list-group-item-heading col-md-8" data-ng-bind="article.title"></h2>
+                                <div class="col-md-1" ng-repeat="category in article.categories">
+                                    <h5 class="label label-primary" data-ng-bind="category"></h5>
+                                </div>
+                            </div>
+                            <p>{{article.content | limitTo: 700}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <h4 class="glyphicon glyphicon-eye-open" data-ng-bind="article.kViews">Views</h4>
+                            <h4 class="glyphicon glyphicon-thumbs-up" data-ng-bind="article.kLikes" style="margin-left: 2%;"></h4>
+                            <h4 class="glyphicon glyphicon-share" data-ng-bind="article.kShared" style="margin-left: 2%;"></h4>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#!/users/{{article.user}}"><h5 data-ng-bind="'By '+article.user.displayName"></h5></a>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-2">
+                            <a ng-click="goPost()" data-ng-href="{{article.contentUrl}}" class="btn-link" target="_blank">
+                                <h5>Go to the post</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
+                No articles yet, why don't you <a href="/#!/articles/create">create one</a>?
+            </div>
+
+        </div>
+    </div>
+</section>

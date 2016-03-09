@@ -1,0 +1,85 @@
+﻿<section data-ng-controller="ArticlesController">
+    <div class="page-header">
+        <h1>New Article</h1>
+    </div>
+    <div>
+        <form name="articleForm" class="form-horizontal" novalidate>
+            <fieldset>
+                <div class="form-group" ng-class="{ 'has-error': articleForm.contentUrl.$dirty && articleForm.contentUrl.$invalid }">
+                    <label class="control-label" for="contentUrl">URL</label>
+                    <div class="controls">
+                        <input ng-change="sendURL()" name="contentUrl" type="url" data-ng-model="contentUrl" id="contentUrl" class="form-control" placeholder="Url" required>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': articleForm.title.$dirty && articleForm.title.$invalid }">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <input name="title" type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title" required>
+                    </div>
+                </div>
+                
+                <div class="form-group" data-ng-init="pullCategories()">
+                    <label class="control-label">Category</label>
+                    <br>
+                    <div class="btn-group" ng-repeat="category in categories">
+                        <label class="btn btn-default" data-ng-model="category.state" ng-click="selectCategory()" btn-checkbox>{{category.name}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tag">Tags</label>
+                    <div class="controls">
+                        <div class="input-group">
+                            <input ng-keypress="tagEvent($event)" name="Tag" type="text" data-ng-model="tag" id="tag" class="form-control" placeholder="Tags">
+                            <span class="input-group-btn">
+                                <button ng-click="addTag()" class="btn btn-primary">Add</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-repeat="tags in tempTagList">
+                    <div class="row input-group col-md-4">
+                        <label class="form-control">{{tags}}</label>
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" ng-click="deleteTag($index)">X</button>
+                        </span>
+                    </div>
+                    <br>
+                </div>
+
+                <!--   Sección del BlogAnalizer  Disable  Content y ImageUrl -->
+                <div class="form-group" ng-class="{ 'has-error': articleForm.content.$dirty && articleForm.content.$invalid }">
+                    <label class="control-label" for="content">Content</label>
+                    <div class="controls">
+                        <textarea style="height: 200px;" name="content" data-ng-model="content" id="content" class="form-control" placeholder="Content" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': articleForm.imageUrl.$dirty && articleForm.imageUrl.$invalid }">
+                    <label class="control-label" for="title">ImageUrl</label>
+                    <div class="controls">
+                        <input name="title" type="text" data-ng-model="imageUrl" id="imageUrl" class="form-control" placeholder="ImageUrl" required>
+                    </div>
+                </div>
+
+                <!-- Cuando funcione el blogAnalizer -->
+                <div class="form-group" ng-show="sliderShow" ng-init="sliderInit()">
+                    <label class="control-label" for="sliderImages">Slide Images</label>
+                    <br>
+                    <div>
+                        <button ng-click="sliderLeft()" class="btn btn-default btn-sm glyphicon glyphicon-chevron-left"></button>
+                        <button ng-click="sliderRight()" class="btn btn-default btn-sm glyphicon glyphicon-chevron-right"></button>
+                        <div>
+                            <img ng-src="{{sliderPosition}}" id="sliderImages" class="img-thumbnail col-md-4 col-lg-4 col-sm-6 col-xs-8" />
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+                <div class="form-group">
+                    <button ng-click="create()" class="btn btn-success btn-lg">Create</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>
