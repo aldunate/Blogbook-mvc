@@ -58,7 +58,10 @@ function ($scope, Articles, Categories, BlogAnalyzer,$stateParams,$location) {
         };
 
         $scope.find = function () {
-            $scope.articles = Articles.query();       
+            $scope.articles = Articles.query();
+            $scope.articles.$promise.then(function (result) {
+                $scope.articles = result;
+            });
         };
 
         $scope.findFollow = function () {

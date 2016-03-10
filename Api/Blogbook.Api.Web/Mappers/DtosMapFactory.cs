@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Blogbook.Api.Core.Articles;
+using Blogbook.Api.Core.Blogs;
 using Blogbook.Api.Web.Domain.Dtos;
 using MongoDB.Bson;
 
@@ -65,5 +66,58 @@ namespace Blogbook.Api.Web.Mappers
 
             return r;
         }
+
+
+        public static List<BlogDto> Map(List<BlogEntity> entities)
+        {
+            var r = new List<BlogDto>();
+            if (entities == null || !entities.Any()) return r;
+
+            entities.ForEach(x => r.Add(Map(x)));
+            return r;
+        }
+
+        public static BlogDto Map(BlogEntity entity)
+        {
+            var r = new BlogDto
+            {
+                Id = entity.Id.ToString(),
+                Name = entity.Name,
+                User = entity.User,
+                OriginalUrl = entity.OriginalUrl,
+                ImageBlog = entity.ImageBlog,
+                Description = entity.Description,
+                Language = entity.Language
+             };
+
+
+            r.Categories = new List<string>();
+            if (entity.Categories != null && entity.Categories.Any())
+                r.Categories.AddRange(entity.Categories);
+
+            return r;
+        }
+
+        public static BlogEntity Map(BlogDto dto)
+        {
+            var r = new BlogEntity
+            {
+                Name = dto.Name,
+                User = dto.User,
+                OriginalUrl = dto.OriginalUrl,
+                ImageBlog = dto.ImageBlog,
+                Description = dto.Description,
+                Language = dto.Language
+            };
+
+            if (dto.Id != null)
+                r.Id = BsonObjectId.Create(dto.Id);
+            r.Categories = new List<string>();
+            if (dto.Categories != null && dto.Categories.Any())
+                r.Categories.AddRange(dto.Categories);
+            return r;
+        }
+
+
     }
 }

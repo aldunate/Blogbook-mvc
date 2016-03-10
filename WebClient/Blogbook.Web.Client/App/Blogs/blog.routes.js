@@ -10,7 +10,7 @@ app.config(['$routeProvider',
 	    $routeProvider.when('/followBlogs', {
 	        templateUrl: 'App/Blogs/Views/listFollow.blog.html'
 	    });
-	    $routeProvider.when('/blog/:blogId', {
+	    $routeProvider.when('/blogs/:blogId', {
 	        templateUrl: 'App/Blogs/Views/view.blog.html'
 	    });
 	    $routeProvider.when('/blogs/:blogId/edit', {

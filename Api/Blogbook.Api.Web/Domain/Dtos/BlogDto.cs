@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using Blogbook.Infrastructure.ApiMongoData;
-using MongoDB.Bson.Serialization.Attributes;
 
-namespace Blogbook.Api.Core.Blogs
+namespace Blogbook.Api.Web.Domain.Dtos
 {
-    [BsonIgnoreExtraElements]
-    public class BlogEntity : ApiMongoAuditableEntity 
+    public class BlogDto
     {
+        public string Id { get; set; }
         public string Name { set; get; }
         public string User { set; get; }
         public string OriginalUrl { set; get; }
@@ -16,6 +14,5 @@ namespace Blogbook.Api.Core.Blogs
         public int KViews { set; get; }
         public int KFollowers { set; get; }
         public string Language { set; get; }
-
     }
 }

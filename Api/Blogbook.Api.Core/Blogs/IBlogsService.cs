@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using Blogbook.Infrastructure.ApiMongoData;
+
+namespace Blogbook.Api.Core.Blogs
+{
+    public interface IBlogsService : IDisposable
+    {
+        List<BlogEntity> GetAllByVariable(string variable, string valor);
+        BlogEntity GetOneByIdAndUser(string id, string userLogin);
+        BlogEntity Insert(BlogEntity entity, AuditTerm auditTerm);
+        BlogEntity Delete(string id);
+        BlogEntity Modify(BlogEntity entity);
+
+    }
+}

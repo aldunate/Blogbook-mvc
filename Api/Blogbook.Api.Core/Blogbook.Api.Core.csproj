@@ -60,6 +60,11 @@
     <Compile Include="BlogAnalyzers\IBlogAnalyzerRepository.cs" />
     <Compile Include="BlogAnalyzers\IBlogAnalyzerService.cs" />
     <Compile Include="Articles\ArticleEntity.cs" />
+    <Compile Include="Blogs\BlogsService.cs" />
+    <Compile Include="Blogs\BlogsRepository.cs" />
+    <Compile Include="Blogs\BlogEntity.cs" />
+    <Compile Include="Blogs\IBlogsRepository.cs" />
+    <Compile Include="Blogs\IBlogsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Articles\ArticlesRepository.cs" />
     <Compile Include="Articles\IArticlesRepository.cs" />
@@ -79,6 +84,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
