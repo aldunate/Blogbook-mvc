@@ -33,7 +33,9 @@ namespace Blogbook.Web.Client
                       "~/App/Articles/article.controller.js",
                       "~/App/Home/*.js",
                       "~/App/Home/home.controller.js",
-                      "~/App/Blogs/*.js",
+                      "~/App/Blogs/blog.routes.js",
+                      "~/App/Blogs/blog.service.js",
+                      "~/App/Blogs/blog.controller.js",
                       "~/App/User/*.js"
 
                       ));

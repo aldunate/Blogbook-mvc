@@ -2,7 +2,7 @@
 
 // Blogs controller
 app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','$location',
-	function ($scope, $stateParams, $location, Blogs) {
+	function ($scope, $stateParams, Blogs, $location) {
 
 
 		// Create new Blog
