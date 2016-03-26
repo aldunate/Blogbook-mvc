@@ -188,7 +188,6 @@
     <Content Include="App\Home\home.routes.js" />
     <Content Include="App\Home\home.service.js" />
     <Content Include="App\Home\Views\home.html" />
-    <Content Include="App\Home\Views\homeCategory.html" />
     <Content Include="App\Img\facebook.png" />
     <Content Include="App\Img\google.png" />
     <Content Include="App\Img\IconoBlogbook%2894x46%29.png" />
