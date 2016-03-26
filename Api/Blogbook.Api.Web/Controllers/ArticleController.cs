@@ -16,16 +16,18 @@ namespace Blogbook.Api.Web.Controllers
             _articleService = new ArticlesService();
         }
 
-        public IEnumerable<ArticleDto> Get()
+        public IEnumerable<ArticleEntity> GetLast()
         {
-            string variable = "UserLogin";
-            string valor = "aldunate";
-
-
-            var articles = _articleService.GetAllByVariable(variable,valor);
-            var articlesDto = DtosMapFactory.Map(articles);
-            return articlesDto;
+            List<ArticleEntity> articles;
+            return articles = _articleService.GetLast();
         }
+        public IEnumerable<ArticleEntity> GetByCategory(string Category)
+        {
+            List<ArticleEntity> articles;
+            return articles = _articleService.GetByCategory(Category);
+            
+        }
+        
 
         public ArticleDto Get(string id)
         {

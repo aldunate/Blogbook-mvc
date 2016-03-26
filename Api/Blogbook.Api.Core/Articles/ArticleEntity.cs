@@ -18,6 +18,7 @@ namespace Blogbook.Api.Core.Articles
         public int KShared { set; get; }
         public string BlogId { set; get; }
         public string Country { set; get; }
+        public string Language { set; get; }
         public string UserLogin { set; get; }
     }
 }

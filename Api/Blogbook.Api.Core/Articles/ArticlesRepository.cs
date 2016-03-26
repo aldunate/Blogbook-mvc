@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Blogbook.Infrastructure.ApiMongoData;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-
+using System;
 
 namespace Blogbook.Api.Core.Articles
 {
@@ -14,56 +13,23 @@ namespace Blogbook.Api.Core.Articles
         {
         }
 
-        // Busca un articulo por ID
-        public ArticleEntity GetById(string id)
+
+        public List<ArticleEntity> GetbyCategory(string category)
         {
-            var obId = ObjectId.Parse(id);
-            ArticleEntity article = new ArticleEntity();
-            var query = _collection.AsQueryable<ArticleEntity>()
-                .Where(e => e.Id == obId )
-                .Select(e => e);
-            return article;
+
+            return _collection.Find(x => x.Categories[0] == category || x.Categories[1] == category || x.Categories[2] == category)
+                .Limit(20)
+                .SortBy(x=>x.KLikes)
+                .ToList();
+        }
+        public List<ArticleEntity> GetLast()
+        {
+            return _collection.Find(x => 1 == 1)
+                .Limit(20)
+                .SortBy(x => x.Audit.Created)
+                .ToList();
         }
 
-        // Busca una lista de articulos segun una variable y un valor
-        public List<ArticleEntity> GetByVariable(string variable,string valor)
-        {
-            var query = _collection.AsQueryable<ArticleEntity>();
-            var listArticles = new List<ArticleEntity>();
-            switch (variable)
-            {
-                case "UserLogin":
-                   
-                     query =
-                _collection.AsQueryable<ArticleEntity>()
-                .Where(e => e.UserLogin == valor)
-                .Select(e => e);
-                    foreach (var ArticleEntity in query)
-                    {
-                        listArticles.Add(ArticleEntity);
-                    }
-
-
-                    return listArticles;
-
-                case "5":
-                   query =
-                _collection.AsQueryable<ArticleEntity>()
-                .Where(e => e.UserLogin == valor)
-                .Select(e => e);
-                    foreach (var ArticleEntity in query)
-                    {
-                        listArticles.Add(ArticleEntity);
-                    }
-                    return listArticles;
-
-                default:
-                    return null;
-
-            };
-            
-
-        }
-
+        
     }
 }

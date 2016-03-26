@@ -1,49 +1,57 @@
 ﻿'use strict';
 
 // Blogs controller
-app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','$location',
-	function ($scope, $stateParams, Blogs, $location) {
+app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','Articles','$location',
+	function ($scope, $stateParams, Blogs,Articles, $location) {
 
 
-		// Create new Blog
-		$scope.create = function () {
-			// Create new Blog object
-			/*var blog = new Blogs({
-				name: this.name
-			});
+		// Find a list of Blogs
+		$scope.findBlogs = function () {
+		    var c = location.hash.split('/');
+		    c = c[2];
+		    c = c.substring(0, 1).toUpperCase() + c.substring(1);
 
-			// Redirect after save
-			blog.$save(function (response) {
-				$location.path('blogs/' + response._id);
+		    switch (c) {
+		        case "Nuevos":
+		            $scope.blogs = Blogs.query({ ultimos: c }, function (result) {
+		                $scope.blogs = result;
+		            });
+		            break;
+		        case "MasVistos":
+		            $scope.blogs = Blogs.query({ masVistos: c }, function (result) {
+		                $scope.blogs = result;
+		            });
+		            break;
+		        default:
+		            $scope.blogs = Blogs.query({ Categories: c }, function (result) {
+		                $scope.blogs = result;
+		            });
+		            break;
+		    }
 
-				// Clear form fields
-				$scope.name = '';
-			}, function (errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-            */
-		};
+		   
+		};      
+		// Find existing Blog
+		$scope.findOne = function () {
 
-		// Remove existing Blog
-		$scope.remove = function (blog) {
-			/*if (blog) {
-				blog.$remove();
+		    var c = location.hash.split('/');
+		    c = c[2];
 
-				for (var i in $scope.blogs) {
-					if ($scope.blogs[i] === blog) {
-						$scope.blogs.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.blog.$remove(function () {
-					$location.path('blogs');
-				});
-			}*/
-		};
+			$scope.blog = Blogs.get({
+				blogId: c
+			}, function (res) {
+			    $scope.blog = res;
+			    Articles.query({ BlogId: c }, function (r)
+			    {
+			        $scope.articlesBlog = r;
+			    });
 
-		// Update existing Blog
+	    })};
+
+
+	    // Update existing Blog
 		$scope.update = function () {
-			/*var blog = $scope.blog;
+		    /*var blog = $scope.blog;
 
 			blog.$update(function () {
 				$location.path('blogs/' + blog._id);
@@ -51,33 +59,6 @@ app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','$location'
 				$scope.error = errorResponse.data.message;
 			});*/
 		};
-
-		// Find a list of Blogs
-		$scope.find = function () {
-		    $scope.blogs = Blogs.query();
-		    $scope.blogs.$promise.then(function (result) {
-		        $scope.blogs = result;
-		    });
-		};
-
-		// Find a list of follow Blogs
-		$scope.findFollow = function () {
-			$scope.blogs = Blogs.query();
-		};
-
-        /*
-		// Find existing Blog
-		$scope.findOne = function () {
-			$scope.blog = Blogs.get({
-				blogId: $stateParams.blogId
-			}).$promise.then(function (data) {
-				$scope.articlesBlog = Articles.query({
-					userId: data.user._id
-				});
-
-			});
-
-		};*/
-
+        
 	}
 ]);

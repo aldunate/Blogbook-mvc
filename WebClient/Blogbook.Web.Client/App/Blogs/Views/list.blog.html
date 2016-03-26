@@ -1,8 +1,11 @@
 ﻿
 
-<div data-ng-controller="BlogsController" data-ng-init="find()" xmlns="http://www.w3.org/1999/html">
+<div data-ng-controller="BlogsController" data-ng-init="findBlogs()" xmlns="http://www.w3.org/1999/html">
     <div class="page-header"></div>
+    
+
     <div data-ng-repeat="blog in blogs">
+        <h1> {{blog.id }}</h1>
         <div class="container well">
             <div class="col-md-12">
                 <span class="col-md-4">
@@ -10,7 +13,7 @@
                 </span>
                 <div class="col-md-8">
                     <div>
-                        <h2 class="list-group-item-heading" data-ng-bind="blog.Name"></h2>
+                        <a  ng-click="goPost()" data-ng-href="{{blog.id}}" ><h2 class="list-group-item-heading" data-ng-bind="blog.Name"></h2></a>
                     </div>
                 </div>
                 <div class="col-md-12">

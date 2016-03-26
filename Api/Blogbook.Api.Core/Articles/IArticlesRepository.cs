@@ -5,6 +5,8 @@ namespace Blogbook.Api.Core.Articles
 {
     public interface IArticlesRepository : IMongoRepository<ArticleEntity>
     {
-        List<ArticleEntity> GetByVariable(string variable,string valor);
+
+        List<ArticleEntity> GetbyCategory(string category);
+        List<ArticleEntity> GetLast();
     }
 }

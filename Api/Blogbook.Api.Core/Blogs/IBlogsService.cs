@@ -7,6 +7,7 @@ namespace Blogbook.Api.Core.Blogs
     public interface IBlogsService : IDisposable
     {
         List<BlogEntity> GetAllByVariable(string variable, string valor);
+        BlogEntity GetOne(string id);
         BlogEntity GetOneByIdAndUser(string id, string userLogin);
         BlogEntity Insert(BlogEntity entity, AuditTerm auditTerm);
         BlogEntity Delete(string id);

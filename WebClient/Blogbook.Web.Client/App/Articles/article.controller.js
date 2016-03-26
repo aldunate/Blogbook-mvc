@@ -192,7 +192,7 @@ function ($scope, Articles, Categories, BlogAnalyzer,$stateParams,$location) {
                     state: false
                 },
                 {
-                    id: "Tecnología",
+                    id: "Tecnologia",
                     name: "Tecnología",
                     state: false
                 }

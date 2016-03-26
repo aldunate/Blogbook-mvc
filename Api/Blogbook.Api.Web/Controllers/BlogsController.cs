@@ -16,22 +16,30 @@ namespace Blogbook.Api.Web.Controllers
             _blogsService = new BlogsService();
         }
 
-        public IEnumerable<BlogDto> Get()
+        public IEnumerable<BlogEntity> Get()
         {
-            string variable = "Name";
-            string valor = "Los Ojos de Osiris";
+            if (this.Request.RequestUri.Query != "")
+            {
+                char delimite = '=';
+                string text = this.Request.RequestUri.Query;
+                text = text.TrimStart('?');
+                string[] q = text.Split(delimite);
+                // En los espacios colo '+' -- HAY QUE MODIFICARLO
+                string variable = q[0];
+                string valor = q[1];
 
-
-            var blogs = _blogsService.GetAllByVariable(variable,valor);
-            var blogsDto = DtosMapFactory.Map(blogs);
-            return blogsDto;
+                var blogs = _blogsService.GetAllByVariable(variable, valor);
+                //var blogsDto = DtosMapFactory.Map(blogs);
+                return blogs;
+            }
+            return null;
         }
 
-        public BlogDto Get(string id)
+        public BlogEntity Get(string id)
         {
-            var b = _blogsService.GetOneByIdAndUser(id, "aldunate");
-            var blogDto = DtosMapFactory.Map(b);
-            return blogDto;
+            var blog = _blogsService.GetOne(id);
+            //var blogDto = DtosMapFactory.Map(b);
+            return blog;
 
         }
 

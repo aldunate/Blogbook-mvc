@@ -25,8 +25,16 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blogs <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/blogs">Los mas visitados</a></li>
-                            <li><a href="#/blogs">Seguidos por mi</a></li>                          
+                            <li><a href="#/blogs/masVistos">Mas vistos</a></li>
+                            <li><a href="#/blogs/nuevos">Nuevos</a></li>
+                            <li ng-show="authentication"><a href="#/blogs/iFollow">Mis favoritos</a></li>   
+                            <li class="divider"></li>
+                            <li><a href="#/blogs/deportes">Deportes</a></li> 
+                            <li><a href="#/blogs/politica">Politica</a></li>
+                            <li><a href="#/blogs/moda">Moda</a></li>
+                            <li><a href="#/blogs/ciencia">Ciencia</a></li>
+                            <li><a href="#/blogs/cine">Cine</a></li>
+                            <li><a href="#/blogs/tecnologia">Tecnologia</a></li>                      
                         </ul>
                     </li>
                     <li class="dropdown">

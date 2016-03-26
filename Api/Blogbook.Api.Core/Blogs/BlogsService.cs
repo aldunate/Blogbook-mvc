@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Blogbook.Infrastructure.ApiMongoData;
+using MongoDB.Bson;
 
 namespace Blogbook.Api.Core.Blogs
 {
@@ -21,7 +22,11 @@ namespace Blogbook.Api.Core.Blogs
         {
             return _repo.FindOne(x => x.Id == id);
         }
-        
+        public BlogEntity GetOne(string id)
+        {
+            return _repo.FindOne(ObjectId.Parse(id));
+        }
+
         public BlogEntity Insert(BlogEntity entity, AuditTerm auditTerm)
         {
             entity.Audit = new Audit

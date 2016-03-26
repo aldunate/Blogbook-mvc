@@ -12,10 +12,15 @@ namespace Blogbook.Api.Core.Articles
             _repo = new ArticlesRepository("BlogbookMvcApiDb", "Articles");
         }
 
-        public List<ArticleEntity> GetAllByVariable(string variable,string valor)
+        public List<ArticleEntity> GetByCategory(string category)
         {
-            return _repo.GetByVariable(variable,valor);
+            return _repo.GetbyCategory(category);
         }
+        public List<ArticleEntity> GetLast()
+        {
+            return _repo.GetLast();         
+        }
+
 
         public ArticleEntity GetOneByIdAndUser(string id, string userLogin)
         {
