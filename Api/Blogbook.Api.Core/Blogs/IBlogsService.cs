@@ -8,7 +8,6 @@ namespace Blogbook.Api.Core.Blogs
     {
         List<BlogEntity> GetNuevos();
         BlogEntity GetOne(string id);
-        BlogEntity GetOneByIdAndUser(string id, string userLogin);
         BlogEntity Insert(BlogEntity entity, AuditTerm auditTerm);
         BlogEntity Delete(string id);
         BlogEntity Modify(BlogEntity entity);

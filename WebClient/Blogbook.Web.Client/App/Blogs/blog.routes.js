@@ -13,8 +13,8 @@ app.config(['$routeProvider',
 	        templateUrl: 'App/Blogs/Views/nuevos.blog.html'
 	    });
 	
-	    $routeProvider.when('blogs/iFollow', {
-	        templateUrl: 'App/Blogs/Views/listFollow.blog.html'
+	    $routeProvider.when('/blogs/follow', {
+	        templateUrl: 'App/Blogs/Views/follow.blog.html'
 	    });
 	    $routeProvider.when('/blogs/:blogId', {
 	        templateUrl: 'App/Blogs/Views/view.blog.html'
@@ -24,5 +24,6 @@ app.config(['$routeProvider',
 	    });
 
 	}
+
 ]);
 

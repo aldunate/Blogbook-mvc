@@ -20,12 +20,6 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/articles/:articleId/edit', {
         templateUrl: 'App/Articles/Views/edit.article.html'
     });
-    $routeProvider.when('/', {
-        templateUrl: "App/Articles/Views/home.html"
-    });
-}
-
-
 }
 ]);
 

@@ -19,10 +19,7 @@ namespace Blogbook.Api.Core.Blogs
             return _repo.GetNuevos();
         }
         
-        public BlogEntity GetOneByIdAndUser(string id, string userLogin)
-        {
-            return _repo.FindOne(x => x.Id == id);
-        }
+
         public BlogEntity GetOne(string id)
         {
             return _repo.FindOne(ObjectId.Parse(id));

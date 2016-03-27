@@ -1,12 +1,14 @@
 ﻿
-<div data-ng-controller="ArticleController" data-ng-init="findHome()" xmlns="http://www.w3.org/1999/html">
+<div data-ng-controller="HomeController" data-ng-init="find()" xmlns="http://www.w3.org/1999/html">
    
-     <h1> Articulos </h1>
+     <h1> HOME </h1>
     <div data-ng-repeat="article in articles">
-        <div data class="container well">
+
+        <div data class="col-md-12" >
             <div class="col-md-12">
-                <span class="col-md-4">
-                    <img class="img-responsive" ng-src="{{article.ImageUrl}}" style="max-width:100%;" />
+
+                <span class="col-md-4" >
+                    <img class="img-responsive"  ng-src="{{article.ImageUrl}}" style="max-width:100%;" />
                 </span>
                 <div class="item col-md-8">
                     <div>

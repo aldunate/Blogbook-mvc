@@ -8,10 +8,7 @@ app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','Articles',
     
 		// Find existing Blog
 	    $scope.findOne = function () {
-
-	        $scope.a = "s";
 	    };
-
 
 		$scope.findNuevos = function () {
 		    $scope.blogs = Blogs.query({});
@@ -25,7 +22,6 @@ app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','Articles',
 		};
 
 		$scope.goToBlog = function () {
-
 		};
 
 

@@ -44,9 +44,7 @@ function ($scope, Articles, Categories, BlogAnalyzer, $stateParams, $location) {
     $scope.findFollow = function () {
         $scope.articles = Articles.query();
     };
-    $scope.findHome = function () {
-        $scope.articles = Articles.query();
-    };
+
 
     //Enviar URL, a blogAnalyzer
     $scope.sendURL = function () {
