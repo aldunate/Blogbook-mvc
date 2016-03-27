@@ -13,9 +13,10 @@ namespace Blogbook.Api.Core.Blogs
             _repo = new BlogsRepository("BlogbookMvcApiDb", "Blogs");
         }
 
-        public List<BlogEntity> GetAllByVariable(string variable,string valor)
+        public List<BlogEntity> GetNuevos()
         {
-            return _repo.GetByVariable(variable,valor);
+            
+            return _repo.GetNuevos();
         }
         
         public BlogEntity GetOneByIdAndUser(string id, string userLogin)

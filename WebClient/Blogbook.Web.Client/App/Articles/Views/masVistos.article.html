@@ -1,9 +1,7 @@
-﻿
-<div data-ng-controller="HomeController" data-ng-init="find()" xmlns="http://www.w3.org/1999/html">
-   
-     <h1> Articulos </h1>
+﻿<div data-ng-controller="ArticlesController" data-ng-init="findVistos()" xmlns="http://www.w3.org/1999/html">
+    <div class="page-header"></div>
     <div data-ng-repeat="article in articles">
-        <div data class="container well">
+        <div class="container well">
             <div class="col-md-12">
                 <span class="col-md-4">
                     <img class="img-responsive" ng-src="{{article.ImageUrl}}" style="max-width:100%;" />
@@ -25,7 +23,7 @@
                     <h5 class="glyphicon glyphicon-share" data-ng-bind="article.KShared" style="margin-left: 2%;"></h5>
                 </div>
                 <div class="col-md-3">
-                    <a data-ng-href="{{URL}}/blogs/{{article.BlogId}}"><h5 data-ng-bind="'De '+ user"></h5></a>
+                    <a href="{{article.BlogId}}"><h5 data-ng-bind="'De '+User"></h5></a>
                 </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-2">
@@ -35,6 +33,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
+        No articles yet, why don't you <a href="/articles/create">create one</a>?
     </div>
 </div>
 

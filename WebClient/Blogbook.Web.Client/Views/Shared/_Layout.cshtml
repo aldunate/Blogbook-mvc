@@ -27,21 +27,22 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#/blogs/masVistos">Mas vistos</a></li>
                             <li><a href="#/blogs/nuevos">Nuevos</a></li>
-                            <li ng-show="authentication"><a href="#/blogs/iFollow">Mis favoritos</a></li>   
-                            <li class="divider"></li>
-                            <li><a href="#/blogs/deportes">Deportes</a></li> 
-                            <li><a href="#/blogs/politica">Politica</a></li>
-                            <li><a href="#/blogs/moda">Moda</a></li>
-                            <li><a href="#/blogs/ciencia">Ciencia</a></li>
-                            <li><a href="#/blogs/cine">Cine</a></li>
-                            <li><a href="#/blogs/tecnologia">Tecnologia</a></li>                      
+                            <li ng-show="authentication"><a href="#/blogs/iFollow">Mis favoritos</a></li>                                               
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articulos <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articulos<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/">Los mas visitados</a></li>
-                            <li><a href="#/">Seguidos por mi</a></li>
+                            <li><a href="#/articles/vistos">Mas vistos</a></li>
+                            <li><a href="#/articles/nuevos">Nuevos</a></li>
+                            <li ng-show="authentication"><a href="#/articles/iFollow">Mis favoritos</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#/articles/deportes">Deportes</a></li>
+                            <li><a href="#/articles/politica">Politica</a></li>
+                            <li><a href="#/articles/moda">Moda</a></li>
+                            <li><a href="#/articles/ciencia">Ciencia</a></li>
+                            <li><a href="#/articles/cine">Cine</a></li>
+                            <li><a href="#/articles/tecnologia">Tecnologia</a></li>
                         </ul>
                     </li>
                 </ul>             
@@ -184,8 +185,6 @@
             </div>
         </script>
     </div>
-
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

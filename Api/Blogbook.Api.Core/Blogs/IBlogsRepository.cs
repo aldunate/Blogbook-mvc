@@ -5,6 +5,6 @@ namespace Blogbook.Api.Core.Blogs
 {
     public interface IBlogsRepository : IMongoRepository<BlogEntity>
     {
-        List<BlogEntity> GetByVariable(string variable, string valor);
+        List<BlogEntity> GetNuevos();
     }
 }

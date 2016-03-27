@@ -30,9 +30,7 @@ namespace Blogbook.Web.Client
 
                       "~/App/application.js",
                       "~/App/Articles/*.js",
-                      "~/App/Articles/article.controller.js",
-                      "~/App/Home/*.js",
-                      "~/App/Home/home.controller.js",
+                      "~/App/Articles/article.controller.js",                    
                       "~/App/Blogs/blog.routes.js",
                       "~/App/Blogs/blog.service.js",
                       "~/App/Blogs/blog.controller.js",

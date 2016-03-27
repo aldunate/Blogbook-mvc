@@ -5,48 +5,31 @@ app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','Articles',
 	function ($scope, $stateParams, Blogs,Articles, $location) {
 
 
-		// Find a list of Blogs
-		$scope.findBlogs = function () {
-		    var c = location.hash.split('/');
-		    c = c[2];
-		    c = c.substring(0, 1).toUpperCase() + c.substring(1);
-
-		    switch (c) {
-		        case "Nuevos":
-		            $scope.blogs = Blogs.query({ ultimos: c }, function (result) {
-		                $scope.blogs = result;
-		            });
-		            break;
-		        case "MasVistos":
-		            $scope.blogs = Blogs.query({ masVistos: c }, function (result) {
-		                $scope.blogs = result;
-		            });
-		            break;
-		        default:
-		            $scope.blogs = Blogs.query({ Categories: c }, function (result) {
-		                $scope.blogs = result;
-		            });
-		            break;
-		    }
-
-		   
-		};      
+    
 		// Find existing Blog
-		$scope.findOne = function () {
+	    $scope.findOne = function () {
 
-		    var c = location.hash.split('/');
-		    c = c[2];
+	        $scope.a = "s";
+	    };
 
-			$scope.blog = Blogs.get({
-				blogId: c
-			}, function (res) {
-			    $scope.blog = res;
-			    Articles.query({ BlogId: c }, function (r)
-			    {
-			        $scope.articlesBlog = r;
-			    });
 
-	    })};
+		$scope.findNuevos = function () {
+		    $scope.blogs = Blogs.query({});
+		};
+		$scope.findMasVistos = function(){
+		    $scope.blogs = Blogs.query({});
+		};
+
+		$scope.findFollows = function () {
+		    $scope.blogs = Blogs.query({});
+		};
+
+		$scope.goToBlog = function () {
+
+		};
+
+
+
 
 
 	    // Update existing Blog
