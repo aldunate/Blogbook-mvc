@@ -151,6 +151,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\Satellizer\controllers\" />
     <Folder Include="App\User\Views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\Json\" />
@@ -170,7 +171,6 @@
   <ItemGroup>
     <Content Include="App\Articles\article.service.js" />
     <Content Include="App\Articles\article.routes.js" />
-    <Content Include="App\application.js" />
     <Content Include="App\Articles\bloganalyzer.service.js" />
     <Content Include="App\Articles\categories.service.js" />
     <Content Include="App\Articles\Views\edit.article.html" />
@@ -195,6 +195,33 @@
     <Content Include="App\Img\google.png" />
     <Content Include="App\Img\IconoBlogbook%2894x46%29.png" />
     <Content Include="App\Img\twitter.png" />
+    <Content Include="App\Satellizer\app.js" />
+    <Content Include="App\Satellizer\home.js" />
+    <Content Include="App\Satellizer\login.js" />
+    <Content Include="App\Satellizer\logout.js" />
+    <Content Include="App\Satellizer\navbar.js" />
+    <Content Include="App\Satellizer\profile.js" />
+    <Content Include="App\Satellizer\signup.js" />
+    <Content Include="App\Satellizer\directives\passwordMatch.js" />
+    <Content Include="App\Satellizer\directives\passwordStrength.js" />
+    <Content Include="App\Satellizer\favicon.png" />
+    <Content Include="App\Satellizer\index.html" />
+    <Content Include="App\Satellizer\partials\home.html" />
+    <Content Include="App\Satellizer\partials\login.html" />
+    <Content Include="App\Satellizer\partials\profile.html" />
+    <Content Include="App\Satellizer\partials\signup.html" />
+    <Content Include="App\Satellizer\services\account.js" />
+    <Content Include="App\Satellizer\stylesheets\angular-toastr.css" />
+    <Content Include="App\Satellizer\stylesheets\styles.css" />
+    <Content Include="App\Satellizer\vendor\angular-animate.js" />
+    <Content Include="App\Satellizer\vendor\angular-messages.js" />
+    <Content Include="App\Satellizer\vendor\angular-mocks.js" />
+    <Content Include="App\Satellizer\vendor\angular-resource.js" />
+    <Content Include="App\Satellizer\vendor\angular-sanitize.js" />
+    <Content Include="App\Satellizer\vendor\angular-toastr.js" />
+    <Content Include="App\Satellizer\vendor\angular-toastr.tpls.js" />
+    <Content Include="App\Satellizer\vendor\angular-ui-router.js" />
+    <Content Include="App\Satellizer\vendor\angular.js" />
     <Content Include="App\User\authentication.controller.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -204,8 +231,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-toastr.js" />
+    <Content Include="Scripts\angular-toastr.tpls.js" />
     <Content Include="Scripts\angular-ui-router2.18.min.js" />
     <Content Include="Scripts\Angular1.4.9\angular-animate.min.js" />
+    <Content Include="Scripts\Angular1.4.9\angular-loader.min.js" />
+    <Content Include="Scripts\Angular1.4.9\angular-messages.min.js" />
+    <Content Include="Scripts\Angular1.4.9\angular-mocks.js" />
     <Content Include="Scripts\Angular1.4.9\angular-resource.min.js" />
     <Content Include="Scripts\Angular1.4.9\angular-route.min.js" />
     <Content Include="Scripts\Angular1.4.9\angular-sanitize.min.js" />
