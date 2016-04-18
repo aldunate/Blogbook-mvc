@@ -4,6 +4,8 @@ using Blogbook.Api.Core.Blogs;
 using Blogbook.Api.Web.Domain.Dtos;
 using Blogbook.Api.Web.Domain.Sessions;
 using Blogbook.Api.Web.Mappers;
+using MongoDB.Bson;
+
 
 namespace Blogbook.Api.Web.Controllers
 {
@@ -22,7 +24,7 @@ namespace Blogbook.Api.Web.Controllers
         }
 
         public BlogEntity Get(string id)
-        {          
+        {
             //var blogDto = DtosMapFactory.Map(b);
             return _blogsService.GetOne(id);
         }

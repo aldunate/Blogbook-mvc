@@ -186,6 +186,7 @@
     <Content Include="App\Blogs\Views\nuevos.blog.html" />
     <Content Include="App\Blogs\Views\follow.blog.html" />
     <Content Include="App\Blogs\Views\view.blog.html" />
+    <Content Include="App\Home\css\home.css" />
     <Content Include="App\Home\home.controller.js" />
     <Content Include="App\Home\home.routes.js" />
     <Content Include="App\Home\home.service.js" />

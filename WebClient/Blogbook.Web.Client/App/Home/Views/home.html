@@ -1,19 +1,13 @@
 ﻿
 <div data-ng-controller="HomeController" data-ng-init="find()" xmlns="http://www.w3.org/1999/html">
-   
      <h1> HOME </h1>
     <div data-ng-repeat="article in articles">
 
-        <div data class="col-md-12" >
+        <div data class="jumbotron" >
             <div class="col-md-12">
-
-                <span class="col-md-4" >
-                    <img class="img-responsive"  ng-src="{{article.ImageUrl}}" style="max-width:100%;" />
-                </span>
+                <img class="img-responsive col-md-4"  ng-src="{{article.ImageUrl}}"  />
                 <div class="item col-md-8">
-                    <div>
-                        <h2 class="list-group-item-heading" data-ng-bind="article.Title"></h2>
-                    </div>
+                    <h2 class="list-group-item-heading" data-ng-bind="article.Title"></h2>
                 </div>
                 <div class="col-md-12">
                     <p>{{article.Content | limitTo: 700}}</p>
@@ -27,7 +21,7 @@
                     <h5 class="glyphicon glyphicon-share" data-ng-bind="article.KShared" style="margin-left: 2%;"></h5>
                 </div>
                 <div class="col-md-3">
-                    <a data-ng-href="{{URL}}/blogs/{{article.BlogId}}"><h5 data-ng-bind="'De '+ user"></h5></a>
+                    <a data-ng-href="#/blogs/{{article.BlogId}}"><h5 data-ng-bind="'De '+ user"></h5></a>
                 </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-2">

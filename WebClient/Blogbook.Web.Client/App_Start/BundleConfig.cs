@@ -23,10 +23,12 @@ namespace Blogbook.Web.Client
             bundles.Add(new ScriptBundle("~/bundles/angularApp").Include(
                       "~/Scripts/Angular1.4.9/angular.min.js",
                       "~/Scripts/Angular1.4.9/angular-route.min.js",
+                        "~/Scripts/Angular1.4.9/angular-messages.js",
                       "~/Scripts/Angular1.4.9/angular-resource.min.js",
                       "~/Scripts/Angular1.4.9/angular-animate.min.js",
                       "~/Scripts/Angular1.4.9/ui-bootstrap-tpls-1.1.2.min.js",
                       "~/Scripts/angular-ui-router2.18.min.js",
+                      "~/Scripts/satellizer.min.js",
 
                       "~/App/application.js",
                       "~/App/Articles/*.js",

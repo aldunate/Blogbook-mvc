@@ -8,6 +8,11 @@ app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','Articles',
     
 		// Find existing Blog
 	    $scope.findOne = function () {
+	        $scope.blog = Blogs.query({ blogId: "56e0a399759d441e64360f53" });
+	        while (blog.$promise = false) {
+	            $scope.s = "s";
+	        }
+	        $scope.s = "s";
 	    };
 
 		$scope.findNuevos = function () {
@@ -23,10 +28,6 @@ app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','Articles',
 
 		$scope.goToBlog = function () {
 		};
-
-
-
-
 
 	    // Update existing Blog
 		$scope.update = function () {

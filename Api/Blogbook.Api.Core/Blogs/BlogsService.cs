@@ -22,9 +22,11 @@ namespace Blogbook.Api.Core.Blogs
 
         public BlogEntity GetOne(string id)
         {
-            return _repo.FindOne(ObjectId.Parse(id));
+           var s =  new BsonObjectId(ObjectId.Parse(id));
+            s = s.AsObjectId;
+            return _repo.FindOne(s);
         }
-
+            
         public BlogEntity Insert(BlogEntity entity, AuditTerm auditTerm)
         {
             entity.Audit = new Audit
