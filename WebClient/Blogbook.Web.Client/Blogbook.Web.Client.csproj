@@ -169,6 +169,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\application.js" />
     <Content Include="App\Articles\article.service.js" />
     <Content Include="App\Articles\article.routes.js" />
     <Content Include="App\Articles\bloganalyzer.service.js" />
