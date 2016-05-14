@@ -21,7 +21,6 @@ namespace Blogbook.Api.Core.Blogs
         // Busca una lista de articulos segun una variable y un valor
         public List<BlogEntity> GetNuevos()
         {
-
             return null;
         }
 

@@ -16,7 +16,6 @@ namespace Blogbook.Api.Core.Articles
 
         public List<ArticleEntity> GetbyCategory(string category)
         {
-
             return _collection.Find(x => x.Categories[0] == category || x.Categories[1] == category || x.Categories[2] == category)
                 .Limit(20)
                 .SortBy(x=>x.KLikes)

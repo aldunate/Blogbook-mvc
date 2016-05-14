@@ -1,8 +1,19 @@
 ﻿
 <div data-ng-controller="HomeController" data-ng-init="find()" xmlns="http://www.w3.org/1999/html">
-     <h1> HOME </h1>
-    <div data-ng-repeat="article in articles">
 
+    <form class="row" name="filtros" >
+        <div class="form-inline">
+            <div class="col-xs-3">
+                <label for="selCategory" class="form-group"> Categoria: </label>
+                <select name="selCategory" class="form-control" id="selCategory" ng-model="category"  ng-change="changeCategory()" >
+                    <option ng-repeat="category in categories.Categories" value="{{category.Name}}">{{category.Name}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <br/>
+
+    <div  data-ng-repeat="article in articles" >
         <div data class="jumbotron" >
             <div class="col-md-12">
                 <img class="img-responsive col-md-4"  ng-src="{{article.ImageUrl}}"  />

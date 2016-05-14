@@ -20,33 +20,17 @@
                 <a class="navbar-brand" href="#/">Blogbook</a>
             </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blogs <span class="caret"></span></a>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  >
+                <ul class="nav navbar-nav" ng-show="authentication">
+                    <li class="dropdown" >
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Follow<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/blogs/masVistos">Mas vistos</a></li>
-                            <li><a href="#/blogs/nuevos">Nuevos</a></li>
-                            <li ng-show="authentication"><a href="#/blogs/follow">Mis favoritos</a></li>                                               
+                            <li><a href="#/blogs/follow">Blogs</a></li>
+                            <li><a href="#/article/follow">Articulos</a></li>                                                               
                         </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articulos<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/articles/vistos">Mas vistos</a></li>
-                            <li><a href="#/articles/nuevos">Nuevos</a></li>
-                            <li ng-show="authentication"><a href="#/articles/follow">Mis favoritos</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#/articles/deportes">Deportes</a></li>
-                            <li><a href="#/articles/politica">Politica</a></li>
-                            <li><a href="#/articles/moda">Moda</a></li>
-                            <li><a href="#/articles/ciencia">Ciencia</a></li>
-                            <li><a href="#/articles/cine">Cine</a></li>
-                            <li><a href="#/articles/tecnologia">Tecnologia</a></li>
-                        </ul>
-                    </li>
-                </ul>             
-               
+                    </li>               
+                </ul>               
+                               
                 <ul class="nav navbar-nav navbar-right" data-ng-show="authentication">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">

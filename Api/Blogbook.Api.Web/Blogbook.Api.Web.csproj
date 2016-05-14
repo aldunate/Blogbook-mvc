@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Domain\Dtos\BlogListDto.cs" />
     <Compile Include="Domain\Dtos\BlogDto.cs" />
     <Compile Include="Domain\Dtos\ArticleDto.cs" />
@@ -164,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Categories\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

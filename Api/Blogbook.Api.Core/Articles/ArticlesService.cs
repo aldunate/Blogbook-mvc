@@ -14,7 +14,9 @@ namespace Blogbook.Api.Core.Articles
 
         public List<ArticleEntity> GetByCategory(string category)
         {
-            return _repo.GetbyCategory(category);
+            if(category == "Todas") return _repo.GetLast();
+            else return _repo.GetbyCategory(category);
+
         }
         public List<ArticleEntity> GetLast()
         {

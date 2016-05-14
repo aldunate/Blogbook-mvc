@@ -10,7 +10,6 @@ namespace Blogbook.Api.Web.Controllers
     public class ArticleController : ApiController
     {
         
-
         private readonly IArticlesService _articleService;
 
         public ArticleController()
@@ -18,7 +17,9 @@ namespace Blogbook.Api.Web.Controllers
             _articleService = new ArticlesService();
         }
 
-        public IEnumerable<ArticleEntity> GetLast()
+
+
+       public IEnumerable<ArticleEntity> GetLast()
         {
             List<ArticleEntity> articles;
             return articles = _articleService.GetLast();
@@ -61,6 +62,9 @@ namespace Blogbook.Api.Web.Controllers
             var res = _articleService.Modify(art);
             return res != null;
         }
+        
+       
+
 
         protected override void Dispose(bool disposing)
         {
