@@ -2,28 +2,28 @@
 
 // Blogs controller
 app.controller('BlogsController', ['$scope', '$stateParams', 'Blogs','Articles','$location',
-	function ($scope, $stateParams, Blogs,Articles, $location) {
+	function ($scope, $stateParams, blogs,articles, $location) {
 
 
     
 		// Find existing Blog
 	    $scope.findOne = function () {
-	        $scope.blog = Blogs.query({ blogId: "56e0a399759d441e64360f53" });
-	        while (blog.$promise = false) {
+	        $scope.blog = blogs.query({ blogId: "56e0a399759d441e64360f53" });
+	        while (blog.$promise === false) {
 	            $scope.s = "s";
 	        }
-	        $scope.s = "s";
+	       
 	    };
 
 		$scope.findNuevos = function () {
-		    $scope.blogs = Blogs.query({});
+		    $scope.blogs = blogs.query({});
 		};
 		$scope.findMasVistos = function(){
-		    $scope.blogs = Blogs.query({});
+		    $scope.blogs = blogs.query({});
 		};
 
 		$scope.findFollows = function () {
-		    $scope.blogs = Blogs.query({});
+		    $scope.blogs = blogs.query({});
 		};
 
 		$scope.goToBlog = function () {
