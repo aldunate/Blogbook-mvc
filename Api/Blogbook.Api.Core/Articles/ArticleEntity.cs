@@ -12,13 +12,13 @@ namespace Blogbook.Api.Core.Articles
         public string ContentUrl { set; get; }
         public string ImageUrl { set; get; }
         public List<string> Tags { set; get; }
-        public List<string> Categories { set; get; }
+        public List<string> Categories { set; get; }  // Solo podra tener una categoría
         public int KViews { set; get; }
         public int KLikes { set; get; }
         public int KShared { set; get; }
         public string BlogId { set; get; }
         public string Country { set; get; }
         public string Language { set; get; }
-        public string UserLogin { set; get; }
+        
     }
 }

@@ -75,6 +75,16 @@
     <Compile Include="Articles\IArticlesRepository.cs" />
     <Compile Include="Articles\ArticlesService.cs" />
     <Compile Include="Articles\IArticlesService.cs" />
+    <Compile Include="Tokens\ITokensRepository.cs" />
+    <Compile Include="Tokens\ITokensService.cs" />
+    <Compile Include="Tokens\TokenEntity.cs" />
+    <Compile Include="Tokens\TokensRepository.cs" />
+    <Compile Include="Tokens\TokensService.cs" />
+    <Compile Include="User\UsersRepository.cs" />
+    <Compile Include="User\UsersService.cs" />
+    <Compile Include="User\IUsersRepository.cs" />
+    <Compile Include="User\IUsersService.cs" />
+    <Compile Include="User\UserEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\infrastructure\Blogbook.infrastructure\Blogbook.Infrastructure.csproj">

@@ -3,34 +3,33 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title Blogbook</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-inverse" ng-controller="HomeController">
+    <nav class="navbar" ng-controller="AuthenticationController" id="divNav">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <a class="navbar-brand" href="#/">Blogbook</a>
             </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  >
-                <ul class="nav navbar-nav" ng-show="authentication">
-                    <li class="dropdown" >
+            <div class="nav navbar-nav">
+                <ul class="nav navbar-nav">
+                    <li><a  data-ng-href="#/articles">Articulos</a></li>
+                    <li><a  data-ng-href="#/blogs">Blogs</a></li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav" data-ng-show="authentication">
+                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Follow<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#/blogs/follow">Blogs</a></li>
-                            <li><a href="#/article/follow">Articulos</a></li>                                                               
+                            <li><a href="#/articles/follow">Articulos</a></li>
                         </ul>
-                    </li>               
-                </ul>               
-                               
+                    </li>
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right" data-ng-show="authentication">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
@@ -38,11 +37,16 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#">Entrar</a>
+                                <a data-ng-href="#/blogs/{{userBlogId}}" ng-click="GetUserBlogId()">Entrar</a>
                             </li>
                             <li>
                                 <a href="#/articles/create">Nuevo Articulo</a>
                             </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a data-ng-href="#/blogs/edit/{{userBlogId}}" ng-click="GetUserBlogId()">Editar</a>
+                            </li>
+                            
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -50,24 +54,84 @@
                             <span>Usuario</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
+
+                          
                             <li>
-                                <a href="#">Editar Perfil</a>
-                            </li>
-                            <li>
-                                <a href="#">Redes Sociales</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">Salir</a>
+                                <a href="#" ng-click="logout()" >Salir</a>
                             </li>
                         </ul>
                     </li>
-                </ul>  
+                </ul>
                 <!-- Login and Register -->
-                <div class="nav navbar-nav navbar-right" data-ng-hide="authentication" ng-controller="AuthenticationController">
-                    <button type="button" class="btn btn-default" ng-click="openModalSignin()">Entrar</button>
-                    <button type="button" class="btn btn-default" ng-click="openModalSignup()">Registrarse</button>
-                </div> 
+                <ul class="nav navbar-nav navbar-right" data-ng-hide="authentication" >      
+                    <li class="dropdown" id="registerDrop">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Registrarse</b> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br/>
+                                        <form data-ng-submit="registerUser()" class="signin form-horizontal col-xs-12" autocomplete="off">
+                                            <fieldset>
+                                                <div class="form-group col-xs-12">
+                                                    <label for="userRegistrationName">Usuario</label>
+                                                    <input type="text" id="userRegistrationName" name="userRegistrationName" class="form-control" data-ng-model="userRegistrationName" placeholder="Usuario">
+                                                </div>
+                                                <div class="form-group col-xs-12">
+                                                    <label for="userRegistrationPassword">Contraseña</label>
+                                                    <input type="password" id="userRegistrationPassword" name="userRegistrationPassword" class="form-control" data-ng-model="userRegistrationPassword" placeholder="Contraseña">
+                                                </div>
+                                                <div class="form-group col-xs-12">
+                                                    <label for="userRegistrationConfirmPassword">Contraseña</label>
+                                                    <input type="password" id="userRegistrationConfirmPassword" name="userRegistrationConfirmPassword" class="form-control" data-ng-model="userRegistrationConfirmPassword" placeholder="Repetir Contraseña">
+                                                </div>
+                                                <div data-ng-show="errorRegister" class="text-center text-danger">
+                                                    <strong data-ng-bind="errorRegister"></strong>
+                                                </div>
+                                                <div class="text-center form-group">
+                                                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="loginDrop">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br />
+                                        <form data-ng-submit="login()" class="signin col-xs-12" autocomplete="off">
+                                            <fieldset>
+                                                <div class="form-group col-xs-12">
+                                                    <label for="userLoginName">Usuario</label>
+                                                    <input type="text" id="userLoginName" name="userLoginName" class="form-control" data-ng-model="userLoginName" placeholder="Usuario">
+                                                </div>
+                                                <div class="form-group col-xs-12">
+                                                    <label for="userLoginPassword">Contraseña</label>
+                                                    <input type="password" id="userLoginPassword" name="userLoginPassword" class="form-control" data-ng-model="userLoginPassword" placeholder="Contraseña">
+                                                </div>
+                                                <div data-ng-show="errorLogin" class="text-center text-danger">
+                                                    <strong data-ng-bind="errorLogin"></strong>
+                                                </div>
+                                                <div class="text-center form-group ">
+                                                    <button type="submit" class="btn btn-primary">Entrar</button>
+                                                </div>
+                                               
+                                            </fieldset>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -77,94 +141,10 @@
     <hr />
     <footer>
         <div class="container">
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Aldunate app</p>
         </div>
     </footer>
-    <!--  MODALS AREAA-->
-    <!-- LOGIN MODAL -->
-    <div w3-include ></div>
-
-    <div ng-controller="AuthenticationController">
-        <script type="text/ng-template" id="user.signin.html">
-            <div class="modal-header">
-                <h3 class="modal-title">Entrar</h3>
-            </div>
-            <div class="modal-body">
-                <section class="row" data-ng-controller="AuthenticationController">
-                    <div class="col-xs-offset-1 col-xs-9 col-md-offset-1 col-md-9">
-                        <form data-ng-submit="login()" class="signin form-horizontal" autocomplete="off">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="username">Usuario</label>
-                                    <input type="text" id="username" name="username" class="form-control" data-ng-model="userLoginPassword" placeholder="Username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" id="password" name="password" class="form-control" data-ng-model="userLoginEmail" placeholder="Password">
-                                </div>
-                                <div class="text-center form-group">
-                                    <button type="submit" class="btn btn-primary" >Entrar</button>&nbsp; or&nbsp;
-                                    <a href="/#!/signup">Registrarse</a>
-                                </div>
-                                <!--
-                                <div class="forgot-password">
-                                    <a href="/#!/password/forgot">¿Olvidaste tu contraseña?</a>
-                                </div>-->
-                                <div data-ng-show="error" class="text-center text-danger">
-                                    <strong data-ng-bind="error"></strong>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </section>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-warning" type="button" ng-click="cancel()">Cerrar</button>
-            </div>
-        </script>
-    </div>
-    <!-- REGISTER MODAL -->
-    <div ng-controller="AuthenticationController">
-        <script type="text/ng-template" id="user.signup.html">
-            <div class="modal-header">
-                <h3 class="modal-title">Registrate</h3>
-            </div>
-            <div class="modal-body">
-                <section class="row" data-ng-controller="AuthenticationController">
-                    <div class="col-md-offset-1"> <h3>Utiliza tu red social</h3></div>
-                  
-                    <div class="col-xs-offset-1 col-xs-9 col-md-offset-1 col-md-9">
-                        <form data-ng-submit="registerUser()" class="signin form-horizontal" autocomplete="off">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="username">Usuario</label>
-                                    <input type="text" id="username" name="username" class="form-control" data-ng-model="userRegistrationEmail" placeholder="Username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" id="password" name="password" class="form-control" data-ng-model="userRegistrationPassword" placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" id="repeatPassword" name="repeatPassword" class="form-control" data-ng-model="userRegistrationConfirmPassword" placeholder="Repetir Password">
-                                </div>
-                                <div class="text-center form-group">
-                                    <button type="submit" class="btn btn-primary">Registrarse</button>
-                                </div>
-                                <div data-ng-show="error" class="text-center text-danger">
-                                    <strong data-ng-bind="error"></strong>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </section>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-warning" type="button" ng-click="cancel()">Cerrar</button>
-            </div>
-        </script>
-    </div>
-
+ 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angularApp")

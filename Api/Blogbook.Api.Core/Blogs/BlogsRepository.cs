@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Blogbook.Infrastructure.ApiMongoData;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
@@ -18,10 +19,25 @@ namespace Blogbook.Api.Core.Blogs
         {
         }
 
-        // Busca una lista de articulos segun una variable y un valor
-        public List<BlogEntity> GetNuevos()
+        public List<BlogEntity> FindFollows(List<ObjectId> listId)
         {
-            return null;
+            List<BlogEntity> auxList = new List<BlogEntity>();
+            List<BlogEntity> blogList = new List<BlogEntity>();
+            for (var i = 0; i < listId.Count; i++)
+            {
+                blogList.AddRange(_collection.Find(x => x.Id == listId[i]).Limit(10).SortBy(x => x.Audit.Created).ToList());
+            }
+            return blogList; // falta ordenar otra vez los articulos por fecha x => x.Audit.Created OrderBy
+        }
+
+
+        // Busca una lista de articulos segun una variable y un valor
+        public List<BlogEntity> GetBlogs()
+        {
+            return _collection.Find(x => 1 == 1)
+            .Limit(20)
+            .SortBy(x => x.Audit.Created)
+            .ToList();
         }
 
     }

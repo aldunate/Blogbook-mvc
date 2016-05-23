@@ -1,41 +1,46 @@
-﻿<div data-ng-controller="ArticlesController" data-ng-init="findFollow()" xmlns="http://www.w3.org/1999/html">
-    <div class="page-header">Follow</div>
-    <div data-ng-repeat="article in articles">
-        <div class="container well">
-            <div class="col-md-12">
-                <span class="col-md-4">
-                    <img class="img-responsive" ng-src="{{article.ImageUrl}}" style="max-width:100%;" />
-                </span>
-                <div class="item col-md-8">
-                    <div>
-                        <h2 class="list-group-item-heading" data-ng-bind="article.Title"></h2>
+﻿
+
+<section data-ng-controller="ArticlesController" data-ng-init="findFollow()" xmlns="http://www.w3.org/1999/html">
+    <div>
+        <div class="divContainer col-xs-12">
+            <form class="row" name="filtros">
+                <div class="form-inline">
+                    <div class="col-xs-3">
+                        <label for="selCategory" class="form-group"> Categoria: </label>
+                        <select name="selCategory" class="form-control" id="selCategory" ng-model="category" ng-change="changeCategory()">
+                            <option ng-repeat="category in categories.Categories" value="{{category.Name}}">{{category.Name}}</option>
+                        </select>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <p>{{article.Content | limitTo: 700}}</p>
+            </form>
+        </div>
+        <br />
+        <div data-ng-repeat="article in articles">
+            <a ng-click="goPost(article)" data-ng-href="{{article.ContentUrl}}" target="_blank">
+                <div data class="divContainer row col-xs-12">
+                    <div class="col-xs-8 ">
+                        <div class="item col-md-12">
+                            <h2 class="list-group-item-heading" data-ng-bind="article.Title"></h2>
+                        </div>
+                        <div class="col-xs-12" style="height: 100px;">
+                            <p>{{article.Content | limitTo: 300}}... </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="img-responsive imgArticle" ng-src="{{article.ImageUrl}}" alt="{{article.ImageUrl}}" />
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <h5 class="glyphicon glyphicon-eye-open" data-ng-bind="article.KViews">Views</h5>
+                            <h5 class="glyphicon glyphicon-thumbs-up" data-ng-bind="article.KLikes" style="margin-left: 5%;"></h5>
+                            <h5 class="glyphicon glyphicon-share" data-ng-bind="article.KShared" style="margin-left: 5%;"></h5>
+                        </div>
+                        <div class="col-xs-9">
+                            <a data-ng-href="#/blogs/{{article.BlogId}}">Articulo de {{article.User}}</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="col-md-4">
-                    <h5 class="glyphicon glyphicon-eye-open" data-ng-bind="article.KViews">Views</h5>
-                    <h5 class="glyphicon glyphicon-thumbs-up" data-ng-bind="article.KLikes" style="margin-left: 2%;"></h5>
-                    <h5 class="glyphicon glyphicon-share" data-ng-bind="article.KShared" style="margin-left: 2%;"></h5>
-                </div>
-                <div class="col-md-3">
-                    <a href="{{article.BlogId}}"><h5 data-ng-bind="'De '+User"></h5></a>
-                </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-2">
-                    <a ng-click="goPost()" data-ng-href="{{article.ContentUrl}}" class="btn-link" target="_blank">
-                        <h5>Go to the post</h5>
-                    </a>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
-    <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
-        No articles yet, why don't you <a href="/articles/create">create one</a>?
-    </div>
-</div>
-
+</section>

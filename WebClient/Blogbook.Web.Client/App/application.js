@@ -9,3 +9,6 @@ app.config(['$resourceProvider', function ($resourceProvider) {
 
 }]);
 
+app.value("validoValue", false);
+app.value("tokenValue", null);
+

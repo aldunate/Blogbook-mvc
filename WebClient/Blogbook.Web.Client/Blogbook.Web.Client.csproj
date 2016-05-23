@@ -169,24 +169,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\application.js" />
+    <Content Include="App\Factory\auth.factory.js" />
     <Content Include="App\Service\article.service.js" />
     <Content Include="App\Routes\article.routes.js" />
     <Content Include="App\Service\bloganalyzer.service.js" />
     <Content Include="App\Service\categories.service.js" />
     <Content Include="App\Articles\Views\edit.article.html" />
-    <Content Include="App\Articles\Views\masVistos.article.html" />
-    <Content Include="App\Articles\Views\nuevos.article.html" />
+    <Content Include="App\Articles\Views\list.articles.html" />
     <Content Include="App\Articles\Views\follow.article.html" />
-    <Content Include="App\Articles\Views\view.article.html" />
     <Content Include="App\Articles\Views\create.article.html" />
     <Content Include="App\Routes\blog.routes.js" />
     <Content Include="App\Service\blog.service.js" />
     <Content Include="App\Blogs\Views\edit.blog.html" />
-    <Content Include="App\Blogs\Views\masVistos.blog.html" />
-    <Content Include="App\Blogs\Views\nuevos.blog.html" />
+    <Content Include="App\Blogs\Views\list.blog.html" />
     <Content Include="App\Blogs\Views\follow.blog.html" />
     <Content Include="App\Blogs\Views\view.blog.html" />
-    <Content Include="App\Home\css\home.css" />
     <Content Include="App\Home\home.controller.js" />
     <Content Include="App\Routes\home.routes.js" />
     <Content Include="App\Service\home.service.js" />
@@ -198,6 +195,7 @@
     <Content Include="App\User\authentication.controller.js" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\navbar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -90,11 +90,6 @@ namespace Blogbook.Api.Web.Mappers
                 Language = entity.Language
              };
 
-
-            r.Categories = new List<string>();
-            if (entity.Categories != null && entity.Categories.Any())
-                r.Categories.AddRange(entity.Categories);
-
             return r;
         }
 
@@ -112,9 +107,7 @@ namespace Blogbook.Api.Web.Mappers
 
             if (dto.Id != null)
                 r.Id = BsonObjectId.Create(dto.Id);
-            r.Categories = new List<string>();
-            if (dto.Categories != null && dto.Categories.Any())
-                r.Categories.AddRange(dto.Categories);
+          
             return r;
         }
 

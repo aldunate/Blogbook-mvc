@@ -1,21 +1,6 @@
-﻿<div data-ng-controller="ArticlesController" data-ng-init="findNuevos()" xmlns="http://www.w3.org/1999/html">
-    <div class="page-header">NUEVOS</div>
-    <div class="col-xs-12" style="margin-bottom:8%;">
-        <!-- <input ng-change="sendURL()" name="contentUrl" type="url" data-ng-model="contentUrl"
-             id="contentUrl" class="form-control" placeholder="Url" required>
-                -->
-        <div class="form-group col-xs-2">
-            <label class="control-label" for="categoria">Categoría</label>
-            <div class="controls">  <!-- ng-change="getCategories()" pendiente  -->
-                <select  data-ng-repeat="category in categories" name="categoria" type="text" data-ng-model="categoria" 
-                        id="categoria" class="form-control" placeholder="Todos">    
-                    <option >{{category.name}}</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-12" data-ng-repeat="article in articles">
+﻿<div data-ng-controller="ArticlesController" data-ng-init="findFollow()" xmlns="http://www.w3.org/1999/html">
+    <div class="page-header">Follow</div>
+    <div data-ng-repeat="article in articles">
         <div class="container well">
             <div class="col-md-12">
                 <span class="col-md-4">

@@ -1,10 +1,50 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
+﻿<section data-ng-controller="BlogsController" data-ng-init="findOneEdit()">
+    <div class="divContainer col-xs-12">
+        <h2>Editar blog</h2>
+    </div>
+    <form data-ng-submit="update()" name="articleForm" class="form-horizontal divContainer col-xs-12" autocomplete="off" novalidate>
+        <fieldset>
+            <div class="form-group col-xs-10" ng-class="{ 'has-error': articleForm.title.$dirty && articleForm.title.$invalid }">
+                <label class="control-label" for="Name">Nombre del blog</label>
+                <div class="controls">
+                    <input name="Name" type="text" data-ng-model="blog.Name" id="Name" class="form-control" placeholder="Nombre" required>
+                </div>
+            </div>
 
-</body>
-</html>
+            <div class="form-group col-xs-10" ng-class="{ 'has-error': articleForm.title.$dirty && articleForm.title.$invalid }">
+                <label class="control-label" for="OriginalUrl">Url de tu blog</label>
+                <div class="controls">
+                    <input name="OriginalUrl" type="text" data-ng-model="blog.OriginalUrl" id="OriginalUrl" class="form-control" placeholder="URL de tu blog principal" required>
+                </div>
+            </div>
+            <div class="form-group col-xs-10" ng-class="{ 'has-error': articleForm.title.$dirty && articleForm.title.$invalid }">
+                <label class="control-label" for="ImageBlog">URL Imagen para tu blog</label>
+                <div class="controls">
+                    <input name="ImageBlog" type="text" data-ng-model="blog.ImageBlog" id="ImageBlog" class="form-control" placeholder="Busca una la url de una imagen y ponla en tu web" required>
+                </div>
+            </div>
+            <div class="form-group col-xs-10" ng-class="{ 'has-error': articleForm.title.$dirty && articleForm.title.$invalid }">
+                <label class="control-label" for="Description">Descripción</label>
+                <div class="controls">
+                    <textarea style="height: 200px;" name="Description" data-ng-model="blog.Description" id="Description" class="form-control" placeholder="Descripcion del blog" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-4">
+                <label class="control-label" for="selCategory">Categoría</label>
+                <select name="selCategory" class="form-control" id="selCategory" ng-model="blog.Category">
+                    <option ng-repeat="category in categories.Categories" value="{{category.Name}}">{{category.Name}}</option>
+                </select>
+            </div>
+
+            <br/>
+            <div data-ng-show="error" class="text-danger col-xs-10">
+                <strong data-ng-bind="error"></strong>
+            </div>
+            <div class="form-group col-xs-10">
+                <button type="submit" class="btn btn-success btn-lg">Editar</button>
+            </div>
+        </fieldset>
+    </form>
+
+</section>

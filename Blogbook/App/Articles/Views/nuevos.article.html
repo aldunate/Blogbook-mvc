@@ -1,0 +1,41 @@
+﻿<div data-ng-controller="ArticlesController" data-ng-init="findNuevos()" xmlns="http://www.w3.org/1999/html">
+    <div class="page-header">NUEVOS</div>
+    <div data-ng-repeat="article in articles">
+        <div class="container well">
+            <div class="col-md-12">
+                <span class="col-md-4">
+                    <img class="img-responsive" ng-src="{{article.ImageUrl}}" style="max-width:100%;" />
+                </span>
+                <div class="item col-md-8">
+                    <div>
+                        <h2 class="list-group-item-heading" data-ng-bind="article.Title"></h2>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p>{{article.Content | limitTo: 700}}</p>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h5 class="glyphicon glyphicon-eye-open" data-ng-bind="article.KViews">Views</h5>
+                    <h5 class="glyphicon glyphicon-thumbs-up" data-ng-bind="article.KLikes" style="margin-left: 2%;"></h5>
+                    <h5 class="glyphicon glyphicon-share" data-ng-bind="article.KShared" style="margin-left: 2%;"></h5>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{article.BlogId}}"><h5 data-ng-bind="'De '+User"></h5></a>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-2">
+                    <a ng-click="goPost()" data-ng-href="{{article.ContentUrl}}" class="btn-link" target="_blank">
+                        <h5>Go to the post</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
+        No articles yet, why don't you <a href="/articles/create">create one</a>?
+    </div>
+</div>
+

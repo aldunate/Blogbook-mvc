@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Blogbook.Infrastructure.ApiMongoData;
+using MongoDB.Bson;
 
 namespace Blogbook.Api.Core.Articles
 {
@@ -16,17 +17,29 @@ namespace Blogbook.Api.Core.Articles
         {
             if(category == "Todas") return _repo.GetLast();
             else return _repo.GetbyCategory(category);
-
         }
+
+        public List<ArticleEntity> GetByBlog(string blogId)
+        {
+            return _repo.GetByBlog(blogId);
+        }
+
         public List<ArticleEntity> GetLast()
         {
             return _repo.GetLast();         
         }
 
 
-        public ArticleEntity GetOneByIdAndUser(string id, string userLogin)
+        public ArticleEntity GetOneById(string id)
         {
-            return _repo.FindOne(x => x.Id == id);
+            var s = new BsonObjectId(ObjectId.Parse(id));
+            s = s.AsObjectId;
+            return _repo.FindOne(s);
+        }
+
+        public List<ArticleEntity> FindFollows(List<ObjectId> listId)
+        {
+            return _repo.FindFollows(listId);
         }
 
         public ArticleEntity Insert(ArticleEntity entity, AuditTerm auditTerm)

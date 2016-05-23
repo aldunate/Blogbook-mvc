@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Blogbook.Api.Core.User;
 using Blogbook.Infrastructure.ApiMongoData;
 using MongoDB.Bson;
 
@@ -13,12 +14,18 @@ namespace Blogbook.Api.Core.Blogs
             _repo = new BlogsRepository("BlogbookMvcApiDb", "Blogs");
         }
 
-        public List<BlogEntity> GetNuevos()
-        {
-            
-            return _repo.GetNuevos();
+        public List<BlogEntity> GetBlogs()
+        {  
+            return _repo.GetBlogs();
         }
-        
+
+
+        public List<BlogEntity> FindFollows(List<ObjectId> listId)
+        {
+            return _repo.FindFollows(listId);
+        }
+       
+
 
         public BlogEntity GetOne(string id)
         {
@@ -38,6 +45,17 @@ namespace Blogbook.Api.Core.Blogs
             return entity;
         }
 
+        public BlogEntity CreateBlog(string user)
+        {
+            BlogEntity blog = new BlogEntity
+            {
+                User = user,
+                Name = "Nombre del blog"
+            };
+            _repo.InsertOne(blog);
+            return  _repo.FindOne(x => x.User == user);
+        }
+
         public BlogEntity Delete(string id)
         {
             var r = _repo.DeleteOne(id);
@@ -46,8 +64,7 @@ namespace Blogbook.Api.Core.Blogs
 
         public BlogEntity Modify(BlogEntity entity)
         {
-            var r = _repo.Modify(entity);
-            return r;
+            return _repo.Modify(entity);
         }
         
         public void Dispose()

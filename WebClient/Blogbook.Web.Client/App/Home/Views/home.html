@@ -1,47 +1,31 @@
 ﻿
+
 <div data-ng-controller="HomeController" data-ng-init="find()" xmlns="http://www.w3.org/1999/html">
-
-    <form class="row" name="filtros" >
-        <div class="form-inline">
-            <div class="col-xs-3">
-                <label for="selCategory" class="form-group"> Categoria: </label>
-                <select name="selCategory" class="form-control" id="selCategory" ng-model="category"  ng-change="changeCategory()" >
-                    <option ng-repeat="category in categories.Categories" value="{{category.Name}}">{{category.Name}}</option>
-                </select>
-            </div>
-        </div>
-    </form>
-    <br/>
-
-    <div  data-ng-repeat="article in articles" >
-        <div data class="jumbotron" >
-            <div class="col-md-12">
-                <img class="img-responsive col-md-4"  ng-src="{{article.ImageUrl}}"  />
-                <div class="item col-md-8">
-                    <h2 class="list-group-item-heading" data-ng-bind="article.Title"></h2>
+    
+    <div data-ng-repeat="article in articles">
+        <a ng-click="goPost(article)" data-ng-href="{{article.ContentUrl}}" target="_blank">
+            <div data class="divContainer row col-xs-12">
+                <div class="col-md-6 ">
+                    <div class="item col-md-12">
+                        <h2 class="list-group-item-heading" data-ng-bind="article.Title"></h2>
+                    </div>
+                    <div class="col-xs-6 col-md-8">
+                        <p>{{article.Content | limitTo: 300}}... </p>
+                    </div>
+                    <div class="col-xs-6 divIcoArt">
+                        <h5 class="glyphicon glyphicon-eye-open" data-ng-bind="article.KViews">Views</h5>
+                        <h5 class="glyphicon glyphicon-thumbs-up" data-ng-bind="article.KLikes" style="margin-left: 5%;"></h5>
+                        <h5 class="glyphicon glyphicon-share" data-ng-bind="article.KShared" style="margin-left: 5%;"></h5>
+                    </div>
+                    <div class="col-xs-3">
+                        <a data-ng-href="#/blogs/{{article.BlogId}}"><h5 data-ng-bind="{{article.UserLogin}}"></h5></a>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <p>{{article.Content | limitTo: 700}}</p>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="col-md-4">
-                    <h5 class="glyphicon glyphicon-eye-open" data-ng-bind="article.KViews">Views</h5>
-                    <h5 class="glyphicon glyphicon-thumbs-up" data-ng-bind="article.KLikes" style="margin-left: 2%;"></h5>
-                    <h5 class="glyphicon glyphicon-share" data-ng-bind="article.KShared" style="margin-left: 2%;"></h5>
-                </div>
-                <div class="col-md-3">
-                    <a data-ng-href="#/blogs/{{article.BlogId}}"><h5 data-ng-bind="'De '+ user"></h5></a>
-                </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-2">
-                    <a ng-click="goPost()" data-ng-href="{{article.ContentUrl}}" class="btn-link" target="_blank">
-                        <h5>Go to the post</h5>
-                    </a>
+                <div class="col-xs-6">
+                    <img class="img-responsive" ng-src="{{article.ImageUrl}}" alt="{{article.ImageUrl}}" />
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 

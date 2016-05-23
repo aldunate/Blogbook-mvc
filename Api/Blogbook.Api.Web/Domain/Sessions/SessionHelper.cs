@@ -14,7 +14,7 @@ namespace Blogbook.Api.Web.Domain.Sessions
         {
             return new AuditTerm
             {
-                By = GetUserLogin(),
+                //By = GetUserLogin(),
                 On = DateTime.UtcNow
             };
         }

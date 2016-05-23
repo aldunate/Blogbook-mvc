@@ -14,10 +14,11 @@ namespace Blogbook.Api.Core.Blogs
         public string OriginalUrl { set; get; }
         public string ImageBlog { set; get; }
         public string Description { set; get; }
-        public List<string> Categories { set; get; }
+        public string Category { set; get; }
         public int KViews { set; get; }
         public int KFollowers { set; get; }
         public string Language { set; get; }
+        public bool AuxFollow { set; get; }
 
     }
 }

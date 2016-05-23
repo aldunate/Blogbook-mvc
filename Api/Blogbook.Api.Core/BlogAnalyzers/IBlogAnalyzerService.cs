@@ -6,7 +6,7 @@ namespace Blogbook.Api.Core.BlogAnalyzers
 {
     public interface IBlogAnalyzerService : IDisposable
     {
-        BlogAnalyzerEntity GetOneByIdAndUser(string id, string userLogin);
+        BlogAnalyzerEntity GetOneById(string id);
         BlogAnalyzerEntity Insert(BlogAnalyzerEntity entity, AuditTerm auditTerm);
         BlogAnalyzerEntity Delete(string id);
         BlogAnalyzerEntity Modify(BlogAnalyzerEntity entity);

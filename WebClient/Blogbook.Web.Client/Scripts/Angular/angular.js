@@ -841,7 +841,7 @@ function arrayRemove(array, value) {
  <div ng-controller="ExampleController">
  <form novalidate class="simple-form">
  Name: <input type="text" ng-model="user.name" /><br />
- E-mail: <input type="email" ng-model="user.email" /><br />
+ E-mail: <input type="Name" ng-model="user.Name" /><br />
  Gender: <input type="radio" ng-model="user.gender" value="male" />male
  <input type="radio" ng-model="user.gender" value="female" />female<br />
  <button ng-click="reset()">RESET</button>
@@ -20411,7 +20411,7 @@ function nullFormRenameControl(control, name) {
  *
  *  Built-in validation tokens:
  *
- *  - `email`
+ *  - `Name`
  *  - `max`
  *  - `maxlength`
  *  - `min`
@@ -20947,7 +20947,7 @@ var ISO_DATE_REGEXP = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-
 //   9. Fragment
 //                 1111111111111111 222   333333    44444        555555555555555555555555    666     77777777     8888888     999
 var URL_REGEXP = /^[a-z][a-z\d.+-]*:\/*(?:[^:@]+(?::[^@]+)?@)?(?:[^\s:/?#]+|\[[a-f\d:]+\])(?::\d+)?(?:\/[^?#]*)?(?:\?[^#]*)?(?:#.*)?$/i;
-var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+var Name_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 var NUMBER_REGEXP = /^\s*(\-|\+)?(\d+|(\d*(\.\d*)))([eE][+-]?\d+)?\s*$/;
 var DATE_REGEXP = /^(\d{4})-(\d{2})-(\d{2})$/;
 var DATETIMELOCAL_REGEXP = /^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)(?::(\d\d)(\.\d{1,3})?)?$/;
@@ -21785,14 +21785,14 @@ var inputType = {
 
   /**
    * @ngdoc input
-   * @name input[email]
+   * @name input[Name]
    *
    * @description
-   * Text input with email validation. Sets the `email` validation error key if not a valid email
+   * Text input with Name validation. Sets the `Name` validation error key if not a valid Name
    * address.
    *
    * <div class="alert alert-warning">
-   * **Note:** `input[email]` uses a regex to validate email addresses that is derived from the regex
+   * **Note:** `input[Name]` uses a regex to validate Name addresses that is derived from the regex
    * used in Chromium. If you need stricter validation (e.g. requiring a top-level domain), you can
    * use `ng-pattern` or modify the built-in validators (see the {@link guide/forms Forms guide})
    * </div>
@@ -21824,38 +21824,38 @@ var inputType = {
    *    interaction with the input element.
    *
    * @example
-      <example name="email-input-directive" module="emailExample">
+      <example name="Name-input-directive" module="NameExample">
         <file name="index.html">
          <script>
-           angular.module('emailExample', [])
+           angular.module('NameExample', [])
              .controller('ExampleController', ['$scope', function($scope) {
-               $scope.email = {
+               $scope.Name = {
                  text: 'me@example.com'
                };
              }]);
          </script>
            <form name="myForm" ng-controller="ExampleController">
-             <label>Email:
-               <input type="email" name="input" ng-model="email.text" required>
+             <label>Name:
+               <input type="Name" name="input" ng-model="Name.text" required>
              </label>
              <div role="alert">
                <span class="error" ng-show="myForm.input.$error.required">
                  Required!</span>
-               <span class="error" ng-show="myForm.input.$error.email">
-                 Not valid email!</span>
+               <span class="error" ng-show="myForm.input.$error.Name">
+                 Not valid Name!</span>
              </div>
-             <tt>text = {{email.text}}</tt><br/>
+             <tt>text = {{Name.text}}</tt><br/>
              <tt>myForm.input.$valid = {{myForm.input.$valid}}</tt><br/>
              <tt>myForm.input.$error = {{myForm.input.$error}}</tt><br/>
              <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
              <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
-             <tt>myForm.$error.email = {{!!myForm.$error.email}}</tt><br/>
+             <tt>myForm.$error.Name = {{!!myForm.$error.Name}}</tt><br/>
            </form>
          </file>
         <file name="protractor.js" type="protractor">
-          var text = element(by.binding('email.text'));
+          var text = element(by.binding('Name.text'));
           var valid = element(by.binding('myForm.input.$valid'));
-          var input = element(by.model('email.text'));
+          var input = element(by.model('Name.text'));
 
           it('should initialize to model', function() {
             expect(text.getText()).toContain('me@example.com');
@@ -21869,7 +21869,7 @@ var inputType = {
             expect(valid.getText()).toContain('false');
           });
 
-          it('should be invalid if not email', function() {
+          it('should be invalid if not Name', function() {
             input.clear();
             input.sendKeys('xxx');
 
@@ -21878,7 +21878,7 @@ var inputType = {
         </file>
       </example>
    */
-  'email': emailInputType,
+  'Name': NameInputType,
 
 
   /**
@@ -22272,10 +22272,10 @@ function badInputChecker(scope, element, attr, ctrl) {
   if (nativeValidation) {
     ctrl.$parsers.push(function(value) {
       var validity = element.prop(VALIDITY_STATE_PROPERTY) || {};
-      // Detect bug in FF35 for input[email] (https://bugzilla.mozilla.org/show_bug.cgi?id=1064430):
+      // Detect bug in FF35 for input[Name] (https://bugzilla.mozilla.org/show_bug.cgi?id=1064430):
       // - also sets validity.badInput (should only be validity.typeMismatch).
-      // - see http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#e-mail-state-(type=email)
-      // - can ignore this case as we can still read out the erroneous email...
+      // - see http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#e-mail-state-(type=Name)
+      // - can ignore this case as we can still read out the erroneous Name...
       return validity.badInput && !validity.typeMismatch ? undefined : value;
     });
   }
@@ -22348,16 +22348,16 @@ function urlInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   };
 }
 
-function emailInputType(scope, element, attr, ctrl, $sniffer, $browser) {
+function NameInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   // Note: no badInputChecker here by purpose as `url` is only a validation
   // in browsers, i.e. we can always read out input.value even if it is not valid!
   baseInputType(scope, element, attr, ctrl, $sniffer, $browser);
   stringBasedInputType(ctrl);
 
-  ctrl.$$parserName = 'email';
-  ctrl.$validators.email = function(modelValue, viewValue) {
+  ctrl.$$parserName = 'Name';
+  ctrl.$validators.Name = function(modelValue, viewValue) {
     var value = modelValue || viewValue;
-    return ctrl.$isEmpty(value) || EMAIL_REGEXP.test(value);
+    return ctrl.$isEmpty(value) || Name_REGEXP.test(value);
   };
 }
 
@@ -23503,7 +23503,7 @@ var ngCloakDirective = ngDirective({
  *        <li ng-repeat="contact in settings.contacts">
  *          <select ng-model="contact.type" aria-label="Contact method" id="select_{{$index}}">
  *             <option>phone</option>
- *             <option>email</option>
+ *             <option>Name</option>
  *          </select>
  *          <input type="text" ng-model="contact.value" aria-labelledby="select_{{$index}}" />
  *          <button ng-click="settings.clearContact(contact)">clear</button>
@@ -23521,7 +23521,7 @@ var ngCloakDirective = ngDirective({
  *      this.name = "John Smith";
  *      this.contacts = [
  *        {type: 'phone', value: '408 555 1212'},
- *        {type: 'email', value: 'john.smith@example.org'} ];
+ *        {type: 'Name', value: 'john.smith@example.org'} ];
  *    }
  *
  *    SettingsController1.prototype.greet = function() {
@@ -23529,7 +23529,7 @@ var ngCloakDirective = ngDirective({
  *    };
  *
  *    SettingsController1.prototype.addContact = function() {
- *      this.contacts.push({type: 'email', value: 'yourname@example.org'});
+ *      this.contacts.push({type: 'Name', value: 'yourname@example.org'});
  *    };
  *
  *    SettingsController1.prototype.removeContact = function(contactToRemove) {
@@ -23586,7 +23586,7 @@ var ngCloakDirective = ngDirective({
  *       <li ng-repeat="contact in contacts">
  *         <select ng-model="contact.type" id="select_{{$index}}">
  *            <option>phone</option>
- *            <option>email</option>
+ *            <option>Name</option>
  *         </select>
  *         <input type="text" ng-model="contact.value" aria-labelledby="select_{{$index}}" />
  *         <button ng-click="clearContact(contact)">clear</button>
@@ -23604,14 +23604,14 @@ var ngCloakDirective = ngDirective({
  *     $scope.name = "John Smith";
  *     $scope.contacts = [
  *       {type:'phone', value:'408 555 1212'},
- *       {type:'email', value:'john.smith@example.org'} ];
+ *       {type:'Name', value:'john.smith@example.org'} ];
  *
  *     $scope.greet = function() {
  *       alert($scope.name);
  *     };
  *
  *     $scope.addContact = function() {
- *       $scope.contacts.push({type:'email', value:'yourname@example.org'});
+ *       $scope.contacts.push({type:'Name', value:'yourname@example.org'});
  *     };
  *
  *     $scope.removeContact = function(contactToRemove) {
@@ -25869,7 +25869,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
  *
  * - Binding the view into the model, which other directives such as `input`, `textarea` or `select`
  *   require.
- * - Providing validation behavior (i.e. required, number, email, url).
+ * - Providing validation behavior (i.e. required, number, Name, url).
  * - Keeping the state of the control (valid/invalid, dirty/pristine, touched/untouched, validation errors).
  * - Setting related css classes on the element (`ng-valid`, `ng-invalid`, `ng-dirty`, `ng-pristine`, `ng-touched`, `ng-untouched`) including animations.
  * - Registering the control with its parent {@link ng.directive:form form}.
@@ -25889,7 +25889,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
  *    - {@link input[checkbox] checkbox}
  *    - {@link input[radio] radio}
  *    - {@link input[number] number}
- *    - {@link input[email] email}
+ *    - {@link input[Name] Name}
  *    - {@link input[url] url}
  *    - {@link input[date] date}
  *    - {@link input[datetime-local] datetime-local}

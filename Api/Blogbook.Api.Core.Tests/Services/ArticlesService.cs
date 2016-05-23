@@ -39,7 +39,6 @@ namespace Blogbook.Api.Core.Tests.Services
                 ImageUrl = "asdasdas",
                 Tags = new List<string> {"1", "2", "3"},
                 Categories = new List<string> {"a", "b"},
-                UserLogin = ""
             };
 
             article = _service.Insert(article, audit);

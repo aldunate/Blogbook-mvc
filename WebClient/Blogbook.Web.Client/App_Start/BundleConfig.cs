@@ -45,6 +45,7 @@ namespace Blogbook.Web.Client
                       "~/App/application.js",
                       "~/App/Routes/*.js",
                       "~/App/Service/*.js",
+                      "~/App/Factory/*.js",
                       "~/App/Articles/article.controller.js",
                       "~/App/Home/home.controller.js",
                        "~/App/Blogs/blog.controller.js",
@@ -54,7 +55,9 @@ namespace Blogbook.Web.Client
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/navbar.css"
+                      ));
         }
     }
 }

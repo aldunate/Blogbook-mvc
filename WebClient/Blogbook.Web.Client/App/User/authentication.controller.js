@@ -1,119 +1,98 @@
 ﻿
 
-app.controller('AuthenticationController', ['$scope', '$uibModal', '$log', 'authentication',
-    function ($scope, $uibModal, $log, authentication) {
-        
-        // MODAL AREA 
-        $scope.openModalSignin = function (size) {
+app.controller('AuthenticationController', ['$scope', '$log', 'Login', 'Register',
+    function ($scope, $log, Login, Register) {
 
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: 'user.signin.html',
-                controller: 'AuthenticationController',
-                size: size
-            });
+        if (sessionStorage.valido === undefined) $scope.authentication = false;
+        else $scope.authentication = true;
 
-            modalInstance.result.then(function (selectedItem) {
-                $scope.selected = selectedItem;
-            }, function () {
-                // AL cerrar que hace -- la linea de abajo es inutil
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
-
-        $scope.openModalSignup = function (size) {
-
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: 'user.signup.html',
-                controller: 'AuthenticationController',
-                size: size
-            });
-
-            modalInstance.result.then(function (selectedItem) {
-                $scope.selected = selectedItem;
-            }, function () {
-                // AL cerrar que hace -- la linea de abajo es inutil
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
-        $scope.cancel = function () {
-            this.$dismiss('cancel');
-        };
-
-
-       // function ($scope, authentication, $uibModalInstance) { 
-
+        var refreshAuth = function (valid) {
+            $scope.authentication = valid;
+        }
         //Scope Declaration
-        $scope.responseData = "";
         $scope.userName = "";
-        $scope.userRegistrationEmail = "";
+        $scope.userRegistrationName = "";
         $scope.userRegistrationPassword = "";
         $scope.userRegistrationConfirmPassword = "";
-        $scope.userLoginEmail = "";
-        $scope.userLoginPassword = "";
-        $scope.accessToken = "";
-        $scope.refreshToken = "";
-        //Ends Here
-
+        $scope.userLoginName = "";
+        $scope.userLoginPassword = "";    
 
         //Function to register user
         $scope.registerUser = function () {
-
-            $scope.responseData = "";
-
-            //The User Registration Information
-            var userRegistrationInfo = {
-                Email: $scope.userRegistrationEmail,
-                Password: $scope.userRegistrationPassword,
-                ConfirmPassword: $scope.userRegistrationConfirmPassword
-            };
-
-            var promiseregister = authentication.register(userRegistrationInfo);
-
-            promiseregister.then(function (resp) {
-                $scope.responseData = "User is Successfully";
-                $scope.userRegistrationEmail = "";
-                $scope.userRegistrationPassword = "";
-                $scope.userRegistrationConfirmPassword = "";
-            }, function (err) {
-                $scope.responseData = "Error " + err.status;
+            // REGISTER QUERY
+            Register.save({
+                Name: $scope.userRegistrationName,
+                Password: $scope.userRegistrationPassword
+            }).$promise.then(function (data) {
+                if (data.Validado === true) {
+                    sessionStorage.token = data.Token;
+                    sessionStorage.valido = true;
+                    sessionStorage.IdBlog = data.IdBlog;
+                    refreshAuth(true);
+                    $scope.errorRegister = "";
+                } else {
+                    delete sessionStorage.token;
+                    delete sessionStorage.valido;
+                    delete sessionStorage.IdBlog;
+                    refreshAuth(false);
+                    $scope.errorRegister = "El usuario ya existe";
+                }
             });
         };
-
-
-        $scope.redirect = function () {
-            window.location.href = '/Employee/Index';
-        };
-
-        //Function to Login. This will generate Token 
+       
+        //FUNCTION LOGIN 
         $scope.login = function () {
-            //This is the information to pass for token based authentication
-            var userLogin = {
-                grant_type: 'password',
-                username: $scope.userLoginEmail,
-                password: $scope.userLoginPassword
-            };
-
-            var promiselogin = authentication.login(userLogin);
-
-            promiselogin.then(function (resp) {
-
-                $scope.userName = resp.data.userName;
-                //Store the token information in the SessionStorage
-                //So that it can be accessed for other views
-                sessionStorage.setItem('userName', resp.data.userName);
-                sessionStorage.setItem('accessToken', resp.data.access_token);
-                sessionStorage.setItem('refreshToken', resp.data.refresh_token);
-                window.location.href = '/';
-            }, function (err) {
-
-                $scope.responseData = "Error " + err.status;
-            });
-
+            Login.get({
+                    Name: $scope.userLoginName,
+                    Password: $scope.userLoginPassword
+                }).
+                $promise.then(function(data) {
+                    if (data.Validado === true) {
+                        sessionStorage.token = data.Token;
+                        sessionStorage.valido = true;
+                        sessionStorage.IdBlog = data.IdBlog;
+                        refreshAuth(true);
+                        $scope.errorLogin = "";
+                    } else {
+                        delete sessionStorage.token;
+                        delete sessionStorage.valido;
+                        delete sessionStorage.IdBlog;
+                        refreshAuth(false);
+                        $scope.errorLogin = "Usuario o contraseña incorrecta";
+                    }
+                });
         };
 
+        //FUNCTION LOGOUT 
+        $scope.logout = function() {
+            Login.query({
+                Token: sessionStorage.token,
+                Modo: "borrar"
+        });
+            delete sessionStorage.token;
+            delete sessionStorage.valido;
+            delete sessionStorage.IdBlog;
+            refreshAuth(false);
+        }
 
-}]);
+        $scope.GetUserBlogId = function() {
+            $scope.userBlogId = sessionStorage.IdBlog;
+        }
+
+        // REFRESH TOKEN
+        $scope.refreshToken = function() {
+            Login.get({
+                Token: sessionStorage.token
+        }).
+            $promise.then(function (resp) {
+                sessionStorage.token = data.Token;
+                sessionStorage.valido = data.Validado;
+                $scope.authentication = data.Validado;
+            }, function (err) {
+                
+            });
+        }
+
+    }]);
 
 

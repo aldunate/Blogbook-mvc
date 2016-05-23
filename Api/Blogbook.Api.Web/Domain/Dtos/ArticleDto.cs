@@ -16,5 +16,7 @@ namespace Blogbook.Api.Web.Domain.Dtos
         public int KShared { set; get; }
         public string BlogId { set; get; }
         public string Country { set; get; }
+        public string BlogName { set; get; }
+        public string UserName { get; set; }
     }
 }

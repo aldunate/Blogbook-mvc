@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Blogbook.Infrastructure.ApiMongoData;
+using MongoDB.Bson;
 
 namespace Blogbook.Api.Core.Articles
 {
@@ -9,9 +10,11 @@ namespace Blogbook.Api.Core.Articles
 
         List<ArticleEntity> GetByCategory(string category);
         List<ArticleEntity> GetLast();
-        ArticleEntity GetOneByIdAndUser(string id, string userLogin);
+        List<ArticleEntity> GetByBlog(string blogId);
+        ArticleEntity GetOneById(string id);
         ArticleEntity Insert(ArticleEntity entity, AuditTerm auditTerm);
         ArticleEntity Delete(string id);
         ArticleEntity Modify(ArticleEntity entity);
+        List<ArticleEntity> FindFollows(List<ObjectId> listId);
     }
 }

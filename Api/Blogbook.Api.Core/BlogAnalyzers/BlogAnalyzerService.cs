@@ -12,7 +12,7 @@ namespace Blogbook.Api.Core.BlogAnalyzers
             _repo = new BlogAnalyzerRepository("BlogbookMvcApiDb", "Articles");
         }
 
-        public BlogAnalyzerEntity GetOneByIdAndUser(string id, string userLogin)
+        public BlogAnalyzerEntity GetOneById(string id)
         {
             return _repo.FindOne(x => x.Id == id);
         }
